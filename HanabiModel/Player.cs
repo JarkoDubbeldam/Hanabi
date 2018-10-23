@@ -5,14 +5,24 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hanabi.Model {
-  class Player {
+  public class Player {
     public Hand Hand { get; } 
 
-    public int PlayerID { get; }
+    public Guid PlayerID { get; }
 
-    public Player(int ID, Hand hand) {
+    public Player(Guid ID, Hand hand) {
       PlayerID = ID;
       Hand = hand;
+    }
+
+    internal void ReceiveHint(object hint) {
+      if(hint.GetType() == typeof(Colour)) {
+        Hand.ReceiveHint((Colour)hint);
+      } else if(hint.GetType() == typeof(Value)) {
+        Hand.ReceiveHint((Value)hint);
+      } else {
+        throw new ArgumentException(nameof(hint));
+      }
     }
   }
 }

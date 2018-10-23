@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hanabi.Model {
-  class Board {
+  public class Board {
     public List<Card> Cards { get; }
 
     public Board() {
@@ -17,8 +17,18 @@ namespace Hanabi.Model {
         .Where(x => x.Colour == card.Colour)
         .DefaultIfEmpty() // (colourless 0)
         .Max(x => x.Value);
-      var nextvalue = highestCardInThatColour + 1;
+      var nextvalue = (Value)((int)highestCardInThatColour << 1);
       return card.Value == nextvalue; // Colour is already validated by Where.
     }
+
+    public bool Play(Card card) {
+      var success = CanPlay(card);
+      if (success) {
+        Cards.Add(card);
+      }
+      return success;
+    }
+
+    public int GetScore() => Cards.Count;
   }
 }

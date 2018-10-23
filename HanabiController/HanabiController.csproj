@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6A45C604-E5FF-4F46-B987-E422F79E3B89}</ProjectGuid>
+    <ProjectGuid>{3FF8A2A9-38F6-460F-99D3-BB52D594805C}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Hanabi.Model</RootNamespace>
-    <AssemblyName>HanabiModel</AssemblyName>
+    <RootNamespace>Hanabi.Controller</RootNamespace>
+    <AssemblyName>HanabiController</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -33,9 +33,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -44,23 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Board.cs" />
-    <Compile Include="Card.cs" />
-    <Compile Include="Deck.cs" />
-    <Compile Include="DiscardPile.cs" />
-    <Compile Include="Enums.cs" />
-    <Compile Include="Errors.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="Hand.cs" />
-    <Compile Include="Hints.cs" />
-    <Compile Include="LinqExtensions.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerCard.cs" />
-    <Compile Include="Possibilities.cs" />
+    <Compile Include="Controller.cs" />
+    <Compile Include="GameStateResponse.cs" />
+    <Compile Include="IHanabi.cs" />
+    <Compile Include="MoveRequest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\HanabiModel\HanabiModel.csproj">
+      <Project>{6a45c604-e5ff-4f46-b987-e422f79e3b89}</Project>
+      <Name>HanabiModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hanabi.Model {
-  class Deck {
+  public class Deck {
     private Stack<Card> Cards;
     private Random rng = new Random();
 
@@ -18,7 +18,7 @@ namespace Hanabi.Model {
     public bool TryDraw(out Card? card) {
       if(!HasCards) {
         card = null;
-        DeckIsEmpty(this, new EventArgs());
+        DeckIsEmpty?.Invoke(this, new EventArgs());
         return false;
       }
       card = Cards.Pop();
@@ -27,11 +27,16 @@ namespace Hanabi.Model {
 
     public IEnumerable<Card> DrawMany(int N) {
       for(var i = 0; i < N && HasCards; i++) {
-        yield return Cards.Pop();
+        if(TryDraw(out Card? card)) {
+          yield return card.Value;
+        } else {
+          yield break;
+        }
       }
     }
 
     public bool HasCards => Cards.Count > 0;
+    public int NumberOfCards => Cards.Count;
 
     private IEnumerable<Card> Shuffle(IEnumerable<Card> cards) {
       return cards

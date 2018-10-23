@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hanabi.Model {
-  class DiscardPile {
+  public class DiscardPile {
     public List<Card> Cards { get; }
 
     public DiscardPile() {

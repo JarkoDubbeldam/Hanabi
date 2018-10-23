@@ -22,5 +22,23 @@ namespace Hanabi.Model {
         }
       }
     }
+
+    /// <summary>
+    /// Creates an infinite loop of the input sequence. Important! Do not try to completely enumerate the result, it will take a while!
+    /// </summary>
+    /// <typeparam name="T">Type that is enumerated.</typeparam>
+    /// <param name="sequence">The sequence to infinitely repeat.</param>
+    /// <returns>An infinite repetition of the input sequence.</returns>
+    public static IEnumerable<T> InfiniteLoop<T>(this IEnumerable<T> sequence) {
+      if (sequence == null) {
+        throw new ArgumentNullException(nameof(sequence));
+      }
+
+      while (true) {
+        foreach(var value in sequence) {
+          yield return value;
+        }
+      }
+    }
   }
 }

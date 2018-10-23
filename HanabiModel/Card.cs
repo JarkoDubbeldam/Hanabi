@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Hanabi.Model {
-  struct Card {
+  public struct Card {
     public Colour Colour { get; set; }
     public Value Value { get; set; }
 

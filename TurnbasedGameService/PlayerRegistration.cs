@@ -7,33 +7,54 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace TurnbasedGameService {
-  public class PlayerRegistration {
-    private readonly string username;
-    private readonly string plaintext;
+  public class PlayerAuthenticator {
 
-    public PlayerRegistration(string username, string plaintext) {
-      this.username = username;
-      this.plaintext = plaintext;
-    }
 
-    public async Task<Guid> RegisterPlayer() {
-      HashPassword(out byte[] salt, out byte[] hash);
+    public async Task<Guid> RegisterPlayer(string username, string password) {
+      var salt = GetSalt();
+      var hash = HashPassword(password, salt);
       var newID = Guid.NewGuid();
 
       var db = new PlayerDB();
-      await db.AddUser(newID, username, Encoding.UTF8.GetString(hash), Encoding.UTF8.GetString(salt));
+      var user = new User {
+        Userid = newID,
+        Username = username,
+        Hash = hash,
+        Salt = salt
+      };
+      await db.AddUser(user);
       return newID;
     }
 
-    private void HashPassword(out byte[] salt, out byte[] hash) {
-      var algorithm = new SHA256Managed();
+    public async Task<bool> UsernameAvailable(string username) {
+      var db = new PlayerDB();
+      return await db.GetUser(username) == null;
+    }
 
+    public async Task<Guid?> AuthenticatePlayer(string username, string password) {
+      var db = new PlayerDB();
+      var userInfo = await db.GetUser(username);
+
+      var hash = HashPassword(password, userInfo.Salt);
+      if (hash.SequenceEqual(userInfo.Hash)) {
+        return userInfo.Userid;
+      } else {
+        return null;
+      }
+    }
+
+    private byte[] HashPassword(string password, byte[] salt) {
+      var algorithm = new SHA256Managed();
+      var plaintext = Encoding.UTF8.GetBytes(password).Concat(salt);
+      return algorithm.ComputeHash(plaintext.ToArray());
+    }
+
+    private byte[] GetSalt() {
+      byte[] salt;
       var rng = RandomNumberGenerator.Create();
       salt = new byte[4];
       rng.GetBytes(salt);
-
-      var plaintext = Encoding.UTF8.GetBytes(this.plaintext).Concat(salt);
-      hash = algorithm.ComputeHash(plaintext.ToArray());
+      return salt;
     }
   }
 }

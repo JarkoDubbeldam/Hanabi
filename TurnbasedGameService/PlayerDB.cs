@@ -9,16 +9,47 @@ using System.Text;
 
 namespace TurnbasedGameService {
   public class PlayerDB {
-    public async Task AddUser(Guid userID, string username, string hash, string salt) {
-      using (var connection = new SqlConnection(@"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Jarko\source\repos\Hanabi\Hanabi\TurnbasedGameService\App_Data\Users.mdf;Integrated Security=True")) {
+    private const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Jarko\source\repos\Hanabi\Hanabi\TurnbasedGameService\App_Data\Users.mdf;Integrated Security=True";
+
+
+
+    public async Task AddUser(User user) {
+      using (var connection = new SqlConnection(ConnectionString)) {
         using (var command = new SqlCommand("AddUser", connection)) {
           command.CommandType = System.Data.CommandType.StoredProcedure;
-          command.Parameters.Add("@UserID", SqlDbType.UniqueIdentifier).Value = userID;
-          command.Parameters.Add("@Username", SqlDbType.NVarChar, 50).Value = username;
-          command.Parameters.Add("@Hash", SqlDbType.NVarChar, 512).Value = hash;
-          command.Parameters.Add("@Salt", SqlDbType.NVarChar, 32).Value = salt;
+          command.Parameters.Add("@UserID", SqlDbType.UniqueIdentifier).Value = user.Userid;
+          command.Parameters.Add("@Username", SqlDbType.NVarChar, 50).Value = user.Username;
+          command.Parameters.Add("@Hash", SqlDbType.VarBinary, 512).Value = user.Hash;
+          command.Parameters.Add("@Salt", SqlDbType.VarBinary, 32).Value = user.Salt;
           connection.Open();
           await command.ExecuteNonQueryAsync();
+        }
+      }
+    }
+
+    public async Task<User> GetUser(string username) {
+      using (var connection = new SqlConnection(ConnectionString)) {
+        using (var command = new SqlCommand("GetUser", connection)) {
+          command.CommandType = CommandType.StoredProcedure;
+          command.Parameters.Add("@Username", SqlDbType.NVarChar, 50).Value = username;
+          connection.Open();
+
+          var result = await command.ExecuteReaderAsync();
+          if (result.Read()) {
+            var hash = new byte[32];
+            var salt = new byte[4];
+            result.GetBytes(2, 0, hash, 0, 64);
+            result.GetBytes(3, 0, salt, 0, 4);
+
+            return new User {
+              Userid = result.GetGuid(0),
+              Username = result.GetString(1),
+              Hash = hash,
+              Salt = salt
+            };
+          } else {
+            return null;
+          }
         }
       }
     }

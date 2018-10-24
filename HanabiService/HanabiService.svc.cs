@@ -21,7 +21,15 @@ namespace HanabiService {
       throw new NotImplementedException();
     }
 
+    public int CreateGame() {
+      throw new NotImplementedException();
+    }
+
     public GameStateResponse GetGameState(Guid gameID, Guid playerID) {
+      throw new NotImplementedException();
+    }
+
+    public void JoinGame(int game) {
       throw new NotImplementedException();
     }
 

@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8E7DA5A5-83C6-49F4-AE27-BC59FBD5E35E}</ProjectGuid>
-    <OutputType>Exe</OutputType>
-    <RootNamespace>ClientTest</RootNamespace>
-    <AssemblyName>ClientTest</AssemblyName>
+    <ProjectGuid>{CFDD4D9E-F350-41FB-8B74-13B351907F2D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LoginUI</RootNamespace>
+    <AssemblyName>LoginUI</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -41,55 +41,91 @@
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\GameServer\Reference.cs">
+    <Compile Include="AuthenticatorService.cs" />
+    <Compile Include="Connected Services\GameService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="LoginDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LoginDialog.Designer.cs">
+      <DependentUpon>LoginDialog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RegistrationDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegistrationDialog.Designer.cs">
+      <DependentUpon>RegistrationDialog.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="LoginDialog.resx">
+      <DependentUpon>LoginDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="RegistrationDialog.resx">
+      <DependentUpon>RegistrationDialog.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="Connected Services\GameService\GameService.wsdl" />
+    <None Include="Connected Services\GameService\GameService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GameService\GameService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GameService\GameService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GameService\LoginUI.GameService.RegisterPlayerResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\GameServer\GameService.wsdl" />
-    <None Include="Connected Services\GameServer\GameService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\GameServer\GameService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\GameServer\GameService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Properties\DataSources\TurnbasedGameService.RegisterPlayerResponse.datasource" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TurnbasedGameService\TurnbasedGameService.csproj">
-      <Project>{e62a88b5-5d57-4705-9857-463e5685c24b}</Project>
-      <Name>TurnbasedGameService</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\GameServer\" />
+    <WCFMetadataStorage Include="Connected Services\GameService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\GameServer\GameService.disco" />
+    <None Include="Connected Services\GameService\GameService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\GameServer\configuration91.svcinfo" />
+    <None Include="Connected Services\GameService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\GameServer\configuration.svcinfo" />
+    <None Include="Connected Services\GameService\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\GameServer\Reference.svcmap">
+    <None Include="Connected Services\GameService\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

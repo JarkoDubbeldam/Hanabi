@@ -2,7 +2,7 @@
 
 namespace TurnbasedGameService {
   [DataContract]
-  public class RegisterPlayerRequest {
+  public class PlayerCredentials {
     [DataMember]
     public string PlayerNickname { get; set; }
     [DataMember]

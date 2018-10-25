@@ -3,10 +3,10 @@ using System.ServiceModel.Web;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace TurnbasedGameService {
+namespace GameService {
   [DataContract]
   public class RegisterPlayerResponse {
     [DataMember]
-    public Guid PlayerID { get; set; }
+    public Guid? PlayerID { get; set; }
   }
 }

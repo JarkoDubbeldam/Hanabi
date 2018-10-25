@@ -22,10 +22,6 @@ namespace LoginUI {
     }
 
     private async void SubmitButton_Click(object sender, EventArgs e) {
-      if (!await CheckUsernameAvailability()) {
-        MessageBox.Show("Username already taken.");
-        return;
-      }
       if (!ValidatePasswords()) {
         MessageBox.Show("Passwords don't match.");
         return;
@@ -35,16 +31,17 @@ namespace LoginUI {
         Password = PasswordTextbox.Text
       };
 
-      await AuthenticatorService.Service.RegisterPlayerAsync(request);
+      var result = await AuthenticatorService.Service.RegisterPlayerAsync(request);
+      if(result.PlayerID == null) {
+        MessageBox.Show("Username already taken");
+        return;
+      }
       this.Close();
       this.sender.Show();
     }
 
     private bool ValidatePasswords() {
       return PasswordTextbox.Text == RepeatPasswordBox.Text;
-    }
-    private async Task<bool> CheckUsernameAvailability() {
-      return await AuthenticatorService.Service.UsernameAvailableAsync(UsernameTextbox.Text);
     }
 
     private void CancelButton_Click(object sender, EventArgs e) {

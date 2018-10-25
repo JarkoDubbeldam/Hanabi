@@ -5,12 +5,12 @@ using System.Web;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace TurnbasedGameService {
+using System.Data.SqlClient;
+namespace GameService {
   public class PlayerAuthenticator {
 
 
-    public async Task<Guid> RegisterPlayer(string username, string password) {
+    public async Task<Guid?> RegisterPlayer(string username, string password) {
       var salt = GetSalt();
       var hash = HashPassword(password, salt);
       var newID = Guid.NewGuid();
@@ -22,7 +22,13 @@ namespace TurnbasedGameService {
         Hash = hash,
         Salt = salt
       };
-      await db.AddUser(user);
+
+      try {
+        await db.AddUser(user);
+      }
+      catch (SqlException) {
+        return null;
+      }
       return newID;
     }
 
@@ -34,6 +40,9 @@ namespace TurnbasedGameService {
     public async Task<Guid?> AuthenticatePlayer(string username, string password) {
       var db = new PlayerDB();
       var userInfo = await db.GetUser(username);
+      if(userInfo == null) {
+        return null;
+      }
 
       var hash = HashPassword(password, userInfo.Salt);
       if (hash.SequenceEqual(userInfo.Hash)) {

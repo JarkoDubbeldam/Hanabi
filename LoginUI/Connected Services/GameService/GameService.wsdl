@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GameService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="GameService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:55747/GameService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:55747/GameService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:55747/GameService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/TurnbasedGameService" />
+      <xsd:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GameService" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="IGameService_RegisterPlayer_InputMessage">
@@ -12,12 +12,6 @@
   </wsdl:message>
   <wsdl:message name="IGameService_RegisterPlayer_OutputMessage">
     <wsdl:part name="parameters" element="tns:RegisterPlayerResponse" />
-  </wsdl:message>
-  <wsdl:message name="IGameService_UsernameAvailable_InputMessage">
-    <wsdl:part name="parameters" element="tns:UsernameAvailable" />
-  </wsdl:message>
-  <wsdl:message name="IGameService_UsernameAvailable_OutputMessage">
-    <wsdl:part name="parameters" element="tns:UsernameAvailableResponse" />
   </wsdl:message>
   <wsdl:message name="IGameService_AuthenticateUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AuthenticateUser" />
@@ -30,10 +24,6 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/RegisterPlayer" message="tns:IGameService_RegisterPlayer_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/RegisterPlayerResponse" message="tns:IGameService_RegisterPlayer_OutputMessage" />
     </wsdl:operation>
-    <wsdl:operation name="UsernameAvailable">
-      <wsdl:input wsaw:Action="http://tempuri.org/IGameService/UsernameAvailable" message="tns:IGameService_UsernameAvailable_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IGameService/UsernameAvailableResponse" message="tns:IGameService_UsernameAvailable_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="AuthenticateUser">
       <wsdl:input wsaw:Action="http://tempuri.org/IGameService/AuthenticateUser" message="tns:IGameService_AuthenticateUser_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGameService/AuthenticateUserResponse" message="tns:IGameService_AuthenticateUser_OutputMessage" />
@@ -43,15 +33,6 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="RegisterPlayer">
       <soap:operation soapAction="http://tempuri.org/IGameService/RegisterPlayer" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="UsernameAvailable">
-      <soap:operation soapAction="http://tempuri.org/IGameService/UsernameAvailable" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -71,7 +52,7 @@
   </wsdl:binding>
   <wsdl:service name="GameService">
     <wsdl:port name="BasicHttpBinding_IGameService" binding="tns:BasicHttpBinding_IGameService">
-      <soap:address location="http://localhost:55747/GameService.svc" />
+      <soap:address location="http://localhost/GameService/GameService.svc" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

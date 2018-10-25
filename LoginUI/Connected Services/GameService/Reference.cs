@@ -15,7 +15,7 @@ namespace LoginUI.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerCredentials", Namespace="http://schemas.datacontract.org/2004/07/TurnbasedGameService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerCredentials", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
     [System.SerializableAttribute()]
     public partial class PlayerCredentials : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -76,7 +76,7 @@ namespace LoginUI.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterPlayerResponse", Namespace="http://schemas.datacontract.org/2004/07/TurnbasedGameService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterPlayerResponse", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
     [System.SerializableAttribute()]
     public partial class RegisterPlayerResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
@@ -84,7 +84,7 @@ namespace LoginUI.GameService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid PlayerIDField;
+        private System.Nullable<System.Guid> PlayerIDField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -97,7 +97,7 @@ namespace LoginUI.GameService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid PlayerID {
+        public System.Nullable<System.Guid> PlayerID {
             get {
                 return this.PlayerIDField;
             }
@@ -128,12 +128,6 @@ namespace LoginUI.GameService {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RegisterPlayer", ReplyAction="http://tempuri.org/IGameService/RegisterPlayerResponse")]
         System.Threading.Tasks.Task<LoginUI.GameService.RegisterPlayerResponse> RegisterPlayerAsync(LoginUI.GameService.PlayerCredentials request);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/UsernameAvailable", ReplyAction="http://tempuri.org/IGameService/UsernameAvailableResponse")]
-        bool UsernameAvailable(string username);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/UsernameAvailable", ReplyAction="http://tempuri.org/IGameService/UsernameAvailableResponse")]
-        System.Threading.Tasks.Task<bool> UsernameAvailableAsync(string username);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/AuthenticateUser", ReplyAction="http://tempuri.org/IGameService/AuthenticateUserResponse")]
         System.Nullable<System.Guid> AuthenticateUser(LoginUI.GameService.PlayerCredentials request);
@@ -175,14 +169,6 @@ namespace LoginUI.GameService {
         
         public System.Threading.Tasks.Task<LoginUI.GameService.RegisterPlayerResponse> RegisterPlayerAsync(LoginUI.GameService.PlayerCredentials request) {
             return base.Channel.RegisterPlayerAsync(request);
-        }
-        
-        public bool UsernameAvailable(string username) {
-            return base.Channel.UsernameAvailable(username);
-        }
-        
-        public System.Threading.Tasks.Task<bool> UsernameAvailableAsync(string username) {
-            return base.Channel.UsernameAvailableAsync(username);
         }
         
         public System.Nullable<System.Guid> AuthenticateUser(LoginUI.GameService.PlayerCredentials request) {

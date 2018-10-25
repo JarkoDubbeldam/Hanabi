@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("TurnbasedGameService")]
+[assembly: AssemblyTitle("GameService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("TurnbasedGameService")]
+[assembly: AssemblyProduct("GameService")]
 [assembly: AssemblyCopyright("Copyright ©  2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // The following GUID is for the ID of the typelib if this project is exposed to COM
-[assembly: Guid("e62a88b5-5d57-4705-9857-463e5685c24b")]
+[assembly: Guid("491decd7-4a81-4f43-a61e-38ea1c4cb1a0")]
 
 // Version information for an assembly consists of the following four values:
 //

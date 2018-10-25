@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace TurnbasedGameService {
+namespace GameService {
   [DataContract]
   public class PlayerCredentials {
     [DataMember]

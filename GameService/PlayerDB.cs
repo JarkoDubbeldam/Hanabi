@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 using System.Data.SqlClient;
 using System.Data;
 using System.Text;
-
-namespace TurnbasedGameService {
+using System.Configuration;
+namespace GameService {
   public class PlayerDB {
-    private const string ConnectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Jarko\source\repos\Hanabi\Hanabi\TurnbasedGameService\App_Data\Users.mdf;Integrated Security=True";
-
-
+    private readonly string ConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
 
     public async Task AddUser(User user) {
       using (var connection = new SqlConnection(ConnectionString)) {

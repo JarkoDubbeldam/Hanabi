@@ -6,6 +6,6 @@ namespace GameService {
     [DataMember]
     public string PlayerNickname { get; set; }
     [DataMember]
-    public string Password { get; set; }
+    public byte[] Password { get; set; }
   }
 }

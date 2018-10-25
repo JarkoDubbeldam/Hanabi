@@ -69,10 +69,12 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connections.cs" />
     <Compile Include="GameService.svc.cs">
       <DependentUpon>GameService.svc</DependentUpon>
     </Compile>
     <Compile Include="IGameService.cs" />
+    <Compile Include="LoginResult.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="PlayerCollection.cs" />
     <Compile Include="PlayerDB.cs" />

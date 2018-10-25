@@ -23,7 +23,7 @@ namespace LoginUI.GameService {
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PasswordField;
+        private byte[] PasswordField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string PlayerNicknameField;
@@ -39,7 +39,7 @@ namespace LoginUI.GameService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Password {
+        public byte[] Password {
             get {
                 return this.PasswordField;
             }
@@ -119,48 +119,143 @@ namespace LoginUI.GameService {
         }
     }
     
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameService.IGameService")]
-    public interface IGameService {
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.SerializableAttribute()]
+    public partial class LoginResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RegisterPlayer", ReplyAction="http://tempuri.org/IGameService/RegisterPlayerResponse")]
-        LoginUI.GameService.RegisterPlayerResponse RegisterPlayer(LoginUI.GameService.PlayerCredentials request);
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/RegisterPlayer", ReplyAction="http://tempuri.org/IGameService/RegisterPlayerResponse")]
-        System.Threading.Tasks.Task<LoginUI.GameService.RegisterPlayerResponse> RegisterPlayerAsync(LoginUI.GameService.PlayerCredentials request);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LoginUI.GameService.FailureReason FailureReasonField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/AuthenticateUser", ReplyAction="http://tempuri.org/IGameService/AuthenticateUserResponse")]
-        System.Nullable<System.Guid> AuthenticateUser(LoginUI.GameService.PlayerCredentials request);
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.Guid> UserIDField;
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/AuthenticateUser", ReplyAction="http://tempuri.org/IGameService/AuthenticateUserResponse")]
-        System.Threading.Tasks.Task<System.Nullable<System.Guid>> AuthenticateUserAsync(LoginUI.GameService.PlayerCredentials request);
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LoginUI.GameService.FailureReason FailureReason {
+            get {
+                return this.FailureReasonField;
+            }
+            set {
+                if ((this.FailureReasonField.Equals(value) != true)) {
+                    this.FailureReasonField = value;
+                    this.RaisePropertyChanged("FailureReason");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.Guid> UserID {
+            get {
+                return this.UserIDField;
+            }
+            set {
+                if ((this.UserIDField.Equals(value) != true)) {
+                    this.UserIDField = value;
+                    this.RaisePropertyChanged("UserID");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="FailureReason", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    public enum FailureReason : int {
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        None = 0,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        InvalidCredentials = 1,
+        
+        [System.Runtime.Serialization.EnumMemberAttribute()]
+        AlreadyLoggedIn = 2,
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGameServiceChannel : LoginUI.GameService.IGameService, System.ServiceModel.IClientChannel {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameService.ILoginService", SessionMode=System.ServiceModel.SessionMode.Required)]
+    public interface ILoginService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/InitiateSession", ReplyAction="http://tempuri.org/ILoginService/InitiateSessionResponse")]
+        string InitiateSession();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/InitiateSession", ReplyAction="http://tempuri.org/ILoginService/InitiateSessionResponse")]
+        System.Threading.Tasks.Task<string> InitiateSessionAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/RegisterPlayer", ReplyAction="http://tempuri.org/ILoginService/RegisterPlayerResponse")]
+        LoginUI.GameService.RegisterPlayerResponse RegisterPlayer(LoginUI.GameService.PlayerCredentials request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/RegisterPlayer", ReplyAction="http://tempuri.org/ILoginService/RegisterPlayerResponse")]
+        System.Threading.Tasks.Task<LoginUI.GameService.RegisterPlayerResponse> RegisterPlayerAsync(LoginUI.GameService.PlayerCredentials request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/AuthenticateUser", ReplyAction="http://tempuri.org/ILoginService/AuthenticateUserResponse")]
+        LoginUI.GameService.LoginResult AuthenticateUser(LoginUI.GameService.PlayerCredentials request);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/AuthenticateUser", ReplyAction="http://tempuri.org/ILoginService/AuthenticateUserResponse")]
+        System.Threading.Tasks.Task<LoginUI.GameService.LoginResult> AuthenticateUserAsync(LoginUI.GameService.PlayerCredentials request);
+        
+        [System.ServiceModel.OperationContractAttribute(IsInitiating=false, Action="http://tempuri.org/ILoginService/LogOff", ReplyAction="http://tempuri.org/ILoginService/LogOffResponse")]
+        void LogOff();
+        
+        [System.ServiceModel.OperationContractAttribute(IsInitiating=false, Action="http://tempuri.org/ILoginService/LogOff", ReplyAction="http://tempuri.org/ILoginService/LogOffResponse")]
+        System.Threading.Tasks.Task LogOffAsync();
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface ILoginServiceChannel : LoginUI.GameService.ILoginService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GameServiceClient : System.ServiceModel.ClientBase<LoginUI.GameService.IGameService>, LoginUI.GameService.IGameService {
+    public partial class LoginServiceClient : System.ServiceModel.ClientBase<LoginUI.GameService.ILoginService>, LoginUI.GameService.ILoginService {
         
-        public GameServiceClient() {
+        public LoginServiceClient() {
         }
         
-        public GameServiceClient(string endpointConfigurationName) : 
+        public LoginServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public GameServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public LoginServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public GameServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public LoginServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public GameServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public LoginServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
+        }
+        
+        public string InitiateSession() {
+            return base.Channel.InitiateSession();
+        }
+        
+        public System.Threading.Tasks.Task<string> InitiateSessionAsync() {
+            return base.Channel.InitiateSessionAsync();
         }
         
         public LoginUI.GameService.RegisterPlayerResponse RegisterPlayer(LoginUI.GameService.PlayerCredentials request) {
@@ -171,12 +266,20 @@ namespace LoginUI.GameService {
             return base.Channel.RegisterPlayerAsync(request);
         }
         
-        public System.Nullable<System.Guid> AuthenticateUser(LoginUI.GameService.PlayerCredentials request) {
+        public LoginUI.GameService.LoginResult AuthenticateUser(LoginUI.GameService.PlayerCredentials request) {
             return base.Channel.AuthenticateUser(request);
         }
         
-        public System.Threading.Tasks.Task<System.Nullable<System.Guid>> AuthenticateUserAsync(LoginUI.GameService.PlayerCredentials request) {
+        public System.Threading.Tasks.Task<LoginUI.GameService.LoginResult> AuthenticateUserAsync(LoginUI.GameService.PlayerCredentials request) {
             return base.Channel.AuthenticateUserAsync(request);
+        }
+        
+        public void LogOff() {
+            base.Channel.LogOff();
+        }
+        
+        public System.Threading.Tasks.Task LogOffAsync() {
+            return base.Channel.LogOffAsync();
         }
     }
 }

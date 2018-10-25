@@ -10,7 +10,7 @@ namespace GameService {
   public class PlayerAuthenticator {
 
 
-    public async Task<Guid?> RegisterPlayer(string username, string password) {
+    public async Task<Guid?> RegisterPlayer(string username, byte[] password) {
       var salt = GetSalt();
       var hash = HashPassword(password, salt);
       var newID = Guid.NewGuid();
@@ -37,7 +37,7 @@ namespace GameService {
       return await db.GetUser(username) == null;
     }
 
-    public async Task<Guid?> AuthenticatePlayer(string username, string password) {
+    public async Task<Guid?> AuthenticatePlayer(string username, byte[] password) {
       var db = new PlayerDB();
       var userInfo = await db.GetUser(username);
       if(userInfo == null) {
@@ -52,9 +52,9 @@ namespace GameService {
       }
     }
 
-    private byte[] HashPassword(string password, byte[] salt) {
+    private byte[] HashPassword(byte[] password, byte[] salt) {
       var algorithm = new SHA256Managed();
-      var plaintext = Encoding.UTF8.GetBytes(password).Concat(salt);
+      var plaintext = password.Concat(salt);
       return algorithm.ComputeHash(plaintext.ToArray());
     }
 

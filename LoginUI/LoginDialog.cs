@@ -22,16 +22,14 @@ namespace LoginUI {
       var username = UsernameTextbox.Text;
       var pass = PasswordTextbox.Text;
 
-      var request = new PlayerCredentials {
-        PlayerNickname = username,
-        Password = pass
-      };
+
+      var request = AuthenticatorService.GetCredentials(UsernameTextbox.Text, PasswordTextbox.Text);
 
       var result = await AuthenticatorService.Service.AuthenticateUserAsync(request);
-      if (result != null) {
+      if (result.UserID != null) {
         MessageBox.Show("Success!");
       } else {
-        MessageBox.Show("nope");
+        MessageBox.Show($"Failure: {result.FailureReason}");
       }
     }
 

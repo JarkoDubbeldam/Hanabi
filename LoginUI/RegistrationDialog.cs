@@ -26,10 +26,7 @@ namespace LoginUI {
         MessageBox.Show("Passwords don't match.");
         return;
       }
-      var request = new PlayerCredentials {
-        PlayerNickname = UsernameTextbox.Text,
-        Password = PasswordTextbox.Text
-      };
+      var request = AuthenticatorService.GetCredentials(UsernameTextbox.Text, PasswordTextbox.Text);
 
       var result = await AuthenticatorService.Service.RegisterPlayerAsync(request);
       if(result.PlayerID == null) {

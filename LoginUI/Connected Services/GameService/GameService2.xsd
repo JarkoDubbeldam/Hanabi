@@ -3,7 +3,7 @@
   <xs:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
   <xs:complexType name="PlayerCredentials">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:base64Binary" />
       <xs:element minOccurs="0" name="PlayerNickname" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
@@ -14,4 +14,19 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RegisterPlayerResponse" nillable="true" type="tns:RegisterPlayerResponse" />
+  <xs:complexType name="LoginResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="FailureReason" type="tns:FailureReason" />
+      <xs:element minOccurs="0" name="UserID" nillable="true" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
+  <xs:simpleType name="FailureReason">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="None" />
+      <xs:enumeration value="InvalidCredentials" />
+      <xs:enumeration value="AlreadyLoggedIn" />
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="FailureReason" nillable="true" type="tns:FailureReason" />
 </xs:schema>

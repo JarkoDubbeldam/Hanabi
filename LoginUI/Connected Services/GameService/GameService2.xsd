@@ -1,32 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/GameService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GameService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-  <xs:complexType name="PlayerCredentials">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:base64Binary" />
-      <xs:element minOccurs="0" name="PlayerNickname" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="PlayerCredentials" nillable="true" type="tns:PlayerCredentials" />
-  <xs:complexType name="RegisterPlayerResponse">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="PlayerID" nillable="true" type="ser:guid" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="RegisterPlayerResponse" nillable="true" type="tns:RegisterPlayerResponse" />
-  <xs:complexType name="LoginResult">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="FailureReason" type="tns:FailureReason" />
-      <xs:element minOccurs="0" name="UserID" nillable="true" type="ser:guid" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="LoginResult" nillable="true" type="tns:LoginResult" />
-  <xs:simpleType name="FailureReason">
-    <xs:restriction base="xs:string">
-      <xs:enumeration value="None" />
-      <xs:enumeration value="InvalidCredentials" />
-      <xs:enumeration value="AlreadyLoggedIn" />
-    </xs:restriction>
-  </xs:simpleType>
-  <xs:element name="FailureReason" nillable="true" type="tns:FailureReason" />
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/GameService.Contract" />
+  <xs:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/GameService" />
+  <xs:element name="CreateGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GameService.Contract" minOccurs="0" name="request" nillable="true" type="q1:CreateGameRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CreateGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GameService.Contract" minOccurs="0" name="CreateGameResult" nillable="true" type="q2:CreateGameResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="JoinGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/GameService.Contract" minOccurs="0" name="request" nillable="true" type="q3:JoinGameRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KickFromGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="request" nillable="true" type="q4:KickFromGameRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="KickFromGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="KickFromGameResult" nillable="true" type="q5:KickFromGameResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartGame">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="request" nillable="true" type="q6:StartGameRequest" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="StartGameResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="StartGameResult" nillable="true" type="q7:StartGameResponse" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="PushGameCreationState">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GameService.Contract" minOccurs="0" name="gameCreationState" nillable="true" type="q8:GameCreationState" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

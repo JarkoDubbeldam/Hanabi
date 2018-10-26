@@ -3,27 +3,29 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
-using System.ServiceModel.Web;
 using System.Text;
-using System.Threading.Tasks;
+
+using GameService.Contract; 
 
 namespace GameService {
-  // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
-  [ServiceContract(SessionMode = SessionMode.Required)]
-  public interface ILoginService {
+  // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IGameService" in both code and config file together.
+  [ServiceContract(SessionMode = SessionMode.Required, CallbackContract = typeof(IGameServiceCallback))]
+  public interface IGameService {
     [OperationContract]
-    string InitiateSession();
+    CreateGameResponse CreateGame(CreateGameRequest request);
 
-    [OperationContract(ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign)]
-    Task<RegisterPlayerResponse> RegisterPlayer(PlayerCredentials request);
-    
-    [OperationContract(ProtectionLevel = System.Net.Security.ProtectionLevel.EncryptAndSign)]
-    Task<LoginResult> AuthenticateUser(PlayerCredentials request);
+    [OperationContract(IsOneWay = true)]
+    void JoinGame(JoinGameRequest request);
 
     [OperationContract]
-    void LogOff();
+    KickFromGameResponse KickFromGame(KickFromGameRequest request);
+
+    [OperationContract]
+    StartGameResponse StartGame(StartGameRequest request);
   }
 
-
-
+  public interface IGameServiceCallback {
+    [OperationContract(IsOneWay = true)]
+    void PushGameCreationState(GameCreationState gameCreationState);
+  }
 }

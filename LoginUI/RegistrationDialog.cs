@@ -8,17 +8,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-using LoginUI.GameService;
+using LoginUI.LoginService;
 
 namespace LoginUI {
   public partial class RegistrationDialog : Form {
-    private readonly LoginDialog sender;
 
-    public RegistrationDialog(LoginDialog sender) {
+    public RegistrationDialog() {
       InitializeComponent();
       this.AcceptButton = SubmitButton;
       this.CancelButton = cancelbutton;
-      this.sender = sender;
     }
 
     private async void SubmitButton_Click(object sender, EventArgs e) {
@@ -34,7 +32,6 @@ namespace LoginUI {
         return;
       }
       this.Close();
-      this.sender.Show();
     }
 
     private bool ValidatePasswords() {
@@ -43,7 +40,6 @@ namespace LoginUI {
 
     private void CancelButton_Click(object sender, EventArgs e) {
       this.Close();
-      this.sender.Show();
     }
   }
 }

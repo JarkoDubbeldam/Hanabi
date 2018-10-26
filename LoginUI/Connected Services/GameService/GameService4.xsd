@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/GameService.Contract" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/GameService.Contract" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost/GameService/GameService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/GameService.Model" />
+  <xs:complexType name="CreateGameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Gamename" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PlayerId" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateGameRequest" nillable="true" type="tns:CreateGameRequest" />
+  <xs:complexType name="CreateGameResponse">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GameName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="JoinCode" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CreateGameResponse" nillable="true" type="tns:CreateGameResponse" />
+  <xs:complexType name="JoinGameRequest">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GameJoinCode" type="xs:int" />
+      <xs:element minOccurs="0" name="PlayerID" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="JoinGameRequest" nillable="true" type="tns:JoinGameRequest" />
+  <xs:complexType name="GameCreationState">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="GameID" type="ser:guid" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/GameService.Model" minOccurs="0" name="Owner" nillable="true" type="q1:Player" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/GameService.Model" minOccurs="0" name="Players" nillable="true" type="q2:ArrayOfPlayer" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="GameCreationState" nillable="true" type="tns:GameCreationState" />
+</xs:schema>

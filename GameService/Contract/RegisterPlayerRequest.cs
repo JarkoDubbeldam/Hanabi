@@ -1,6 +1,6 @@
 ﻿using System.Runtime.Serialization;
 
-namespace GameService {
+namespace GameService.Contract {
   [DataContract]
   public class PlayerCredentials {
     [DataMember]

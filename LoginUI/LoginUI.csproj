@@ -54,11 +54,47 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="LoginDialog.cs">
+    <Compile Include="Connected Services\LoginService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\LoginControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\LoginControl.Designer.cs">
+      <DependentUpon>LoginControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\JoinGameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\JoinGameControl.Designer.cs">
+      <DependentUpon>JoinGameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\CreateGameControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\CreateGameControl.Designer.cs">
+      <DependentUpon>CreateGameControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\GameLobbyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\GameLobbyControl.Designer.cs">
+      <DependentUpon>GameLobbyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\PlayerLobbyControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\PlayerLobbyControl.Designer.cs">
+      <DependentUpon>PlayerLobbyControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GameServiceCallbackHandler.cs" />
+    <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="LoginDialog.Designer.cs">
-      <DependentUpon>LoginDialog.cs</DependentUpon>
+    <Compile Include="MainUI.Designer.cs">
+      <DependentUpon>MainUI.cs</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -68,8 +104,23 @@
     <Compile Include="RegistrationDialog.Designer.cs">
       <DependentUpon>RegistrationDialog.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="LoginDialog.resx">
-      <DependentUpon>LoginDialog.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\CreateGameControl.resx">
+      <DependentUpon>CreateGameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\JoinGameControl.resx">
+      <DependentUpon>JoinGameControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\LoginControl.resx">
+      <DependentUpon>LoginControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\GameLobbyControl.resx">
+      <DependentUpon>GameLobbyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\PlayerLobbyControl.resx">
+      <DependentUpon>PlayerLobbyControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainUI.resx">
+      <DependentUpon>MainUI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -93,10 +144,38 @@
     <None Include="Connected Services\GameService\GameService2.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\GameService\LoginUI.GameService.LoginResult.datasource">
+    <None Include="Connected Services\GameService\GameService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GameService\GameService4.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\GameService\LoginUI.GameService.CreateGameResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Connected Services\GameService\LoginUI.GameService.RegisterPlayerResponse.datasource">
+    <None Include="Connected Services\GameService\LoginUI.GameService.KickFromGameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\GameService\LoginUI.GameService.StartGameResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LoginService\LoginService.wsdl" />
+    <None Include="Connected Services\LoginService\LoginService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginService\LoginService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginService\LoginService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginService\LoginService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\LoginService\LoginUI.LoginService.LoginResult.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Connected Services\LoginService\LoginUI.LoginService.RegisterPlayerResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
@@ -117,6 +196,22 @@
   </ItemGroup>
   <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\GameService\" />
+    <WCFMetadataStorage Include="Connected Services\LoginService\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\LoginService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\LoginService\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\GameService\GameService.disco" />

@@ -15,18 +15,18 @@ namespace LoginUI.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="PlayerCredentials", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreateGameRequest", Namespace="http://schemas.datacontract.org/2004/07/GameService.Contract")]
     [System.SerializableAttribute()]
-    public partial class PlayerCredentials : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CreateGameRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private byte[] PasswordField;
+        private string GamenameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PlayerNicknameField;
+        private System.Guid PlayerIdField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -39,27 +39,27 @@ namespace LoginUI.GameService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public byte[] Password {
+        public string Gamename {
             get {
-                return this.PasswordField;
+                return this.GamenameField;
             }
             set {
-                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
-                    this.PasswordField = value;
-                    this.RaisePropertyChanged("Password");
+                if ((object.ReferenceEquals(this.GamenameField, value) != true)) {
+                    this.GamenameField = value;
+                    this.RaisePropertyChanged("Gamename");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public string PlayerNickname {
+        public System.Guid PlayerId {
             get {
-                return this.PlayerNicknameField;
+                return this.PlayerIdField;
             }
             set {
-                if ((object.ReferenceEquals(this.PlayerNicknameField, value) != true)) {
-                    this.PlayerNicknameField = value;
-                    this.RaisePropertyChanged("PlayerNickname");
+                if ((this.PlayerIdField.Equals(value) != true)) {
+                    this.PlayerIdField = value;
+                    this.RaisePropertyChanged("PlayerId");
                 }
             }
         }
@@ -76,15 +76,18 @@ namespace LoginUI.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="RegisterPlayerResponse", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="CreateGameResponse", Namespace="http://schemas.datacontract.org/2004/07/GameService.Contract")]
     [System.SerializableAttribute()]
-    public partial class RegisterPlayerResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class CreateGameResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.Guid> PlayerIDField;
+        private string GameNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int JoinCodeField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -97,7 +100,81 @@ namespace LoginUI.GameService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.Guid> PlayerID {
+        public string GameName {
+            get {
+                return this.GameNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GameNameField, value) != true)) {
+                    this.GameNameField = value;
+                    this.RaisePropertyChanged("GameName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int JoinCode {
+            get {
+                return this.JoinCodeField;
+            }
+            set {
+                if ((this.JoinCodeField.Equals(value) != true)) {
+                    this.JoinCodeField = value;
+                    this.RaisePropertyChanged("JoinCode");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="JoinGameRequest", Namespace="http://schemas.datacontract.org/2004/07/GameService.Contract")]
+    [System.SerializableAttribute()]
+    public partial class JoinGameRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int GameJoinCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid PlayerIDField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int GameJoinCode {
+            get {
+                return this.GameJoinCodeField;
+            }
+            set {
+                if ((this.GameJoinCodeField.Equals(value) != true)) {
+                    this.GameJoinCodeField = value;
+                    this.RaisePropertyChanged("GameJoinCode");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid PlayerID {
             get {
                 return this.PlayerIDField;
             }
@@ -121,18 +198,137 @@ namespace LoginUI.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="LoginResult", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="KickFromGameRequest", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
     [System.SerializableAttribute()]
-    public partial class LoginResult : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class KickFromGameRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="KickFromGameResponse", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.SerializableAttribute()]
+    public partial class KickFromGameResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StartGameRequest", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.SerializableAttribute()]
+    public partial class StartGameRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StartGameResponse", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.SerializableAttribute()]
+    public partial class StartGameResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="GameCreationState", Namespace="http://schemas.datacontract.org/2004/07/GameService.Contract")]
+    [System.SerializableAttribute()]
+    public partial class GameCreationState : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private LoginUI.GameService.FailureReason FailureReasonField;
+        private System.Guid GameIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.Guid> UserIDField;
+        private LoginUI.GameService.Player OwnerField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LoginUI.GameService.Player[] PlayersField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -145,27 +341,40 @@ namespace LoginUI.GameService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public LoginUI.GameService.FailureReason FailureReason {
+        public System.Guid GameID {
             get {
-                return this.FailureReasonField;
+                return this.GameIDField;
             }
             set {
-                if ((this.FailureReasonField.Equals(value) != true)) {
-                    this.FailureReasonField = value;
-                    this.RaisePropertyChanged("FailureReason");
+                if ((this.GameIDField.Equals(value) != true)) {
+                    this.GameIDField = value;
+                    this.RaisePropertyChanged("GameID");
                 }
             }
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.Guid> UserID {
+        public LoginUI.GameService.Player Owner {
             get {
-                return this.UserIDField;
+                return this.OwnerField;
             }
             set {
-                if ((this.UserIDField.Equals(value) != true)) {
-                    this.UserIDField = value;
-                    this.RaisePropertyChanged("UserID");
+                if ((object.ReferenceEquals(this.OwnerField, value) != true)) {
+                    this.OwnerField = value;
+                    this.RaisePropertyChanged("Owner");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LoginUI.GameService.Player[] Players {
+            get {
+                return this.PlayersField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PlayersField, value) != true)) {
+                    this.PlayersField = value;
+                    this.RaisePropertyChanged("Players");
                 }
             }
         }
@@ -180,106 +389,161 @@ namespace LoginUI.GameService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="FailureReason", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
-    public enum FailureReason : int {
+    [System.Runtime.Serialization.DataContractAttribute(Name="Player", Namespace="http://schemas.datacontract.org/2004/07/GameService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Player : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        None = 0,
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        InvalidCredentials = 1,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid PlayerIDField;
         
-        [System.Runtime.Serialization.EnumMemberAttribute()]
-        AlreadyLoggedIn = 2,
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string UsernameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid PlayerID {
+            get {
+                return this.PlayerIDField;
+            }
+            set {
+                if ((this.PlayerIDField.Equals(value) != true)) {
+                    this.PlayerIDField = value;
+                    this.RaisePropertyChanged("PlayerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Username {
+            get {
+                return this.UsernameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.UsernameField, value) != true)) {
+                    this.UsernameField = value;
+                    this.RaisePropertyChanged("Username");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameService.ILoginService", SessionMode=System.ServiceModel.SessionMode.Required)]
-    public interface ILoginService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameService.IGameService", CallbackContract=typeof(LoginUI.GameService.IGameServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    public interface IGameService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/InitiateSession", ReplyAction="http://tempuri.org/ILoginService/InitiateSessionResponse")]
-        string InitiateSession();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CreateGame", ReplyAction="http://tempuri.org/IGameService/CreateGameResponse")]
+        LoginUI.GameService.CreateGameResponse CreateGame(LoginUI.GameService.CreateGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/InitiateSession", ReplyAction="http://tempuri.org/ILoginService/InitiateSessionResponse")]
-        System.Threading.Tasks.Task<string> InitiateSessionAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CreateGame", ReplyAction="http://tempuri.org/IGameService/CreateGameResponse")]
+        System.Threading.Tasks.Task<LoginUI.GameService.CreateGameResponse> CreateGameAsync(LoginUI.GameService.CreateGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/RegisterPlayer", ReplyAction="http://tempuri.org/ILoginService/RegisterPlayerResponse")]
-        LoginUI.GameService.RegisterPlayerResponse RegisterPlayer(LoginUI.GameService.PlayerCredentials request);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/JoinGame")]
+        void JoinGame(LoginUI.GameService.JoinGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/RegisterPlayer", ReplyAction="http://tempuri.org/ILoginService/RegisterPlayerResponse")]
-        System.Threading.Tasks.Task<LoginUI.GameService.RegisterPlayerResponse> RegisterPlayerAsync(LoginUI.GameService.PlayerCredentials request);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/JoinGame")]
+        System.Threading.Tasks.Task JoinGameAsync(LoginUI.GameService.JoinGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/AuthenticateUser", ReplyAction="http://tempuri.org/ILoginService/AuthenticateUserResponse")]
-        LoginUI.GameService.LoginResult AuthenticateUser(LoginUI.GameService.PlayerCredentials request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/KickFromGame", ReplyAction="http://tempuri.org/IGameService/KickFromGameResponse")]
+        LoginUI.GameService.KickFromGameResponse KickFromGame(LoginUI.GameService.KickFromGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILoginService/AuthenticateUser", ReplyAction="http://tempuri.org/ILoginService/AuthenticateUserResponse")]
-        System.Threading.Tasks.Task<LoginUI.GameService.LoginResult> AuthenticateUserAsync(LoginUI.GameService.PlayerCredentials request);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/KickFromGame", ReplyAction="http://tempuri.org/IGameService/KickFromGameResponse")]
+        System.Threading.Tasks.Task<LoginUI.GameService.KickFromGameResponse> KickFromGameAsync(LoginUI.GameService.KickFromGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(IsInitiating=false, Action="http://tempuri.org/ILoginService/LogOff", ReplyAction="http://tempuri.org/ILoginService/LogOffResponse")]
-        void LogOff();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGame", ReplyAction="http://tempuri.org/IGameService/StartGameResponse")]
+        LoginUI.GameService.StartGameResponse StartGame(LoginUI.GameService.StartGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(IsInitiating=false, Action="http://tempuri.org/ILoginService/LogOff", ReplyAction="http://tempuri.org/ILoginService/LogOffResponse")]
-        System.Threading.Tasks.Task LogOffAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGame", ReplyAction="http://tempuri.org/IGameService/StartGameResponse")]
+        System.Threading.Tasks.Task<LoginUI.GameService.StartGameResponse> StartGameAsync(LoginUI.GameService.StartGameRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ILoginServiceChannel : LoginUI.GameService.ILoginService, System.ServiceModel.IClientChannel {
+    public interface IGameServiceCallback {
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/PushGameCreationState")]
+        void PushGameCreationState(LoginUI.GameService.GameCreationState gameCreationState);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IGameServiceChannel : LoginUI.GameService.IGameService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class LoginServiceClient : System.ServiceModel.ClientBase<LoginUI.GameService.ILoginService>, LoginUI.GameService.ILoginService {
+    public partial class GameServiceClient : System.ServiceModel.DuplexClientBase<LoginUI.GameService.IGameService>, LoginUI.GameService.IGameService {
         
-        public LoginServiceClient() {
+        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
+                base(callbackInstance) {
         }
         
-        public LoginServiceClient(string endpointConfigurationName) : 
-                base(endpointConfigurationName) {
+        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName) : 
+                base(callbackInstance, endpointConfigurationName) {
         }
         
-        public LoginServiceClient(string endpointConfigurationName, string remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, string remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public LoginServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(endpointConfigurationName, remoteAddress) {
+        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, endpointConfigurationName, remoteAddress) {
         }
         
-        public LoginServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
-                base(binding, remoteAddress) {
+        public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance, System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(callbackInstance, binding, remoteAddress) {
         }
         
-        public string InitiateSession() {
-            return base.Channel.InitiateSession();
+        public LoginUI.GameService.CreateGameResponse CreateGame(LoginUI.GameService.CreateGameRequest request) {
+            return base.Channel.CreateGame(request);
         }
         
-        public System.Threading.Tasks.Task<string> InitiateSessionAsync() {
-            return base.Channel.InitiateSessionAsync();
+        public System.Threading.Tasks.Task<LoginUI.GameService.CreateGameResponse> CreateGameAsync(LoginUI.GameService.CreateGameRequest request) {
+            return base.Channel.CreateGameAsync(request);
         }
         
-        public LoginUI.GameService.RegisterPlayerResponse RegisterPlayer(LoginUI.GameService.PlayerCredentials request) {
-            return base.Channel.RegisterPlayer(request);
+        public void JoinGame(LoginUI.GameService.JoinGameRequest request) {
+            base.Channel.JoinGame(request);
         }
         
-        public System.Threading.Tasks.Task<LoginUI.GameService.RegisterPlayerResponse> RegisterPlayerAsync(LoginUI.GameService.PlayerCredentials request) {
-            return base.Channel.RegisterPlayerAsync(request);
+        public System.Threading.Tasks.Task JoinGameAsync(LoginUI.GameService.JoinGameRequest request) {
+            return base.Channel.JoinGameAsync(request);
         }
         
-        public LoginUI.GameService.LoginResult AuthenticateUser(LoginUI.GameService.PlayerCredentials request) {
-            return base.Channel.AuthenticateUser(request);
+        public LoginUI.GameService.KickFromGameResponse KickFromGame(LoginUI.GameService.KickFromGameRequest request) {
+            return base.Channel.KickFromGame(request);
         }
         
-        public System.Threading.Tasks.Task<LoginUI.GameService.LoginResult> AuthenticateUserAsync(LoginUI.GameService.PlayerCredentials request) {
-            return base.Channel.AuthenticateUserAsync(request);
+        public System.Threading.Tasks.Task<LoginUI.GameService.KickFromGameResponse> KickFromGameAsync(LoginUI.GameService.KickFromGameRequest request) {
+            return base.Channel.KickFromGameAsync(request);
         }
         
-        public void LogOff() {
-            base.Channel.LogOff();
+        public LoginUI.GameService.StartGameResponse StartGame(LoginUI.GameService.StartGameRequest request) {
+            return base.Channel.StartGame(request);
         }
         
-        public System.Threading.Tasks.Task LogOffAsync() {
-            return base.Channel.LogOffAsync();
+        public System.Threading.Tasks.Task<LoginUI.GameService.StartGameResponse> StartGameAsync(LoginUI.GameService.StartGameRequest request) {
+            return base.Channel.StartGameAsync(request);
         }
     }
 }

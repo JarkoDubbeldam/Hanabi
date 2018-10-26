@@ -3,7 +3,7 @@ using System.ServiceModel.Web;
 using System.ServiceModel;
 using System.Runtime.Serialization;
 
-namespace GameService {
+namespace GameService.Contract {
   [DataContract]
   public class RegisterPlayerResponse {
     [DataMember]

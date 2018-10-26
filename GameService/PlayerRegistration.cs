@@ -6,6 +6,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
+using GameService.Model;
+
 namespace GameService {
   public class PlayerAuthenticator {
 
@@ -17,7 +19,7 @@ namespace GameService {
 
       var db = new PlayerDB();
       var user = new User {
-        Userid = newID,
+        PlayerID = newID,
         Username = username,
         Hash = hash,
         Salt = salt
@@ -37,7 +39,7 @@ namespace GameService {
       return await db.GetUser(username) == null;
     }
 
-    public async Task<Guid?> AuthenticatePlayer(string username, byte[] password) {
+    public async Task<Player> AuthenticatePlayer(string username, byte[] password) {
       var db = new PlayerDB();
       var userInfo = await db.GetUser(username);
       if(userInfo == null) {
@@ -46,7 +48,7 @@ namespace GameService {
 
       var hash = HashPassword(password, userInfo.Salt);
       if (hash.SequenceEqual(userInfo.Hash)) {
-        return userInfo.Userid;
+        return userInfo;
       } else {
         return null;
       }

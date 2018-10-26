@@ -13,7 +13,7 @@ namespace LoginUI {
     static void Main() {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
-      Application.Run(new LoginDialog());
+      Application.Run(new MainUI());
     }
   }
 }

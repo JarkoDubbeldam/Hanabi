@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using LoginUI.GameService;
+using LoginUI.LoginService;
 using System.Security.Cryptography;
 namespace LoginUI {
   static class AuthenticatorService {

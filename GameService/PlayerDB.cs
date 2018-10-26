@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Data;
 using System.Text;
 using System.Configuration;
+using GameService.Model;
 namespace GameService {
   public class PlayerDB {
     private readonly string ConnectionString = ConfigurationManager.ConnectionStrings["UserDB"].ConnectionString;
@@ -15,7 +16,7 @@ namespace GameService {
       using (var connection = new SqlConnection(ConnectionString)) {
         using (var command = new SqlCommand("AddUser", connection)) {
           command.CommandType = System.Data.CommandType.StoredProcedure;
-          command.Parameters.Add("@UserID", SqlDbType.UniqueIdentifier).Value = user.Userid;
+          command.Parameters.Add("@UserID", SqlDbType.UniqueIdentifier).Value = user.PlayerID;
           command.Parameters.Add("@Username", SqlDbType.NVarChar, 50).Value = user.Username;
           command.Parameters.Add("@Hash", SqlDbType.VarBinary, 512).Value = user.Hash;
           command.Parameters.Add("@Salt", SqlDbType.VarBinary, 32).Value = user.Salt;
@@ -40,7 +41,7 @@ namespace GameService {
             result.GetBytes(3, 0, salt, 0, 4);
 
             return new User {
-              Userid = result.GetGuid(0),
+              PlayerID = result.GetGuid(0),
               Username = result.GetString(1),
               Hash = hash,
               Salt = salt

@@ -66,23 +66,39 @@
       <DependentUpon>UserDB.mdf</DependentUpon>
     </Content>
     <Content Include="GameService.svc" />
+    <Content Include="LoginService.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connections.cs" />
+    <Compile Include="Contract\CreateGameRequest.cs" />
+    <Compile Include="Contract\CreateGameResponse.cs" />
+    <Compile Include="Contract\GameCreationState.cs" />
+    <Compile Include="Model\Games.cs" />
     <Compile Include="GameService.svc.cs">
       <DependentUpon>GameService.svc</DependentUpon>
     </Compile>
     <Compile Include="IGameService.cs" />
-    <Compile Include="LoginResult.cs" />
-    <Compile Include="Player.cs" />
-    <Compile Include="PlayerCollection.cs" />
+    <Compile Include="Contract\JoinGameRequest.cs" />
+    <Compile Include="Contract\JoinGameResponse.cs" />
+    <Compile Include="Contract\KickFromGame.cs" />
+    <Compile Include="Contract\KickFromGameResponse.cs" />
+    <Compile Include="Model\Connections.cs" />
+    <Compile Include="LoginService.svc.cs">
+      <DependentUpon>LoginService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="ILoginService.cs" />
+    <Compile Include="Contract\LoginResult.cs" />
+    <Compile Include="Model\Game.cs" />
+    <Compile Include="Model\GameBuilder.cs" />
+    <Compile Include="Model\Player.cs" />
     <Compile Include="PlayerDB.cs" />
     <Compile Include="PlayerRegistration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RegisterPlayerRequest.cs" />
-    <Compile Include="RegisterPlayerResponse.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Contract\RegisterPlayerRequest.cs" />
+    <Compile Include="Contract\RegisterPlayerResponse.cs" />
+    <Compile Include="Model\User.cs" />
+    <Compile Include="Contract\StartGameRequest.cs" />
+    <Compile Include="Contract\StartGameResponse.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

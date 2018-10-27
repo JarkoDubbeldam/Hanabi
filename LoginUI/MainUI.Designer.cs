@@ -53,6 +53,7 @@
       // gameLobbyControl1
       // 
       this.gameLobbyControl1.AutoScroll = true;
+      this.gameLobbyControl1.AutoSize = true;
       this.gameLobbyControl1.Location = new System.Drawing.Point(12, 12);
       this.gameLobbyControl1.Name = "gameLobbyControl1";
       this.gameLobbyControl1.Size = new System.Drawing.Size(396, 385);
@@ -70,7 +71,9 @@
       this.Controls.Add(this.createGameControl1);
       this.Name = "MainUI";
       this.Text = "MainUI";
+      this.Load += new System.EventHandler(this.MainUI_OnLoad);
       this.ResumeLayout(false);
+      this.PerformLayout();
 
     }
 

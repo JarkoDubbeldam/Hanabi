@@ -80,8 +80,7 @@
     <Compile Include="IGameService.cs" />
     <Compile Include="Contract\JoinGameRequest.cs" />
     <Compile Include="Contract\JoinGameResponse.cs" />
-    <Compile Include="Contract\KickFromGame.cs" />
-    <Compile Include="Contract\KickFromGameResponse.cs" />
+    <Compile Include="Contract\RemoveFromGameRequest.cs" />
     <Compile Include="Model\Connections.cs" />
     <Compile Include="LoginService.svc.cs">
       <DependentUpon>LoginService.svc</DependentUpon>

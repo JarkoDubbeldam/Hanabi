@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="688688fa-0212-4835-abcb-e03e185ee0fc" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="c6c7ca1a-feac-482c-a7cb-6a06a54f09ed" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
   <ClientOptions>
     <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
     <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
@@ -22,12 +22,12 @@
     <MetadataSource Address="http://localhost/GameService/LoginService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LoginService.disco" MetadataType="Disco" ID="e2c009fd-7122-49ab-b672-326f8637fbbd" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?disco" />
-    <MetadataFile FileName="LoginService.xsd" MetadataType="Schema" ID="bd62b45f-fb30-44c6-91a6-8623da181b65" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd2" />
-    <MetadataFile FileName="LoginService1.xsd" MetadataType="Schema" ID="fc32bcad-e76f-44b6-ad28-da21b5efe096" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd3" />
-    <MetadataFile FileName="LoginService2.xsd" MetadataType="Schema" ID="99276ad0-2010-4597-b992-96c4080fc946" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd0" />
-    <MetadataFile FileName="LoginService3.xsd" MetadataType="Schema" ID="64c766a9-6845-4e74-844c-df0f859097de" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd1" />
-    <MetadataFile FileName="LoginService.wsdl" MetadataType="Wsdl" ID="bc0bcdeb-c4a6-4f16-9cf3-1695226d5263" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?wsdl" />
+    <MetadataFile FileName="LoginService.disco" MetadataType="Disco" ID="563fbb45-e389-443a-85e0-d144a40e9d98" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?disco" />
+    <MetadataFile FileName="LoginService.xsd" MetadataType="Schema" ID="a91d2fed-db02-4d0b-a895-abf41a36ad34" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd2" />
+    <MetadataFile FileName="LoginService1.xsd" MetadataType="Schema" ID="4ad819d8-3953-4746-ac79-8bca187ec20a" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd3" />
+    <MetadataFile FileName="LoginService2.xsd" MetadataType="Schema" ID="9ce00ef5-4794-4007-9a8e-6d5249cf3593" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd0" />
+    <MetadataFile FileName="LoginService3.xsd" MetadataType="Schema" ID="56a88d96-79df-428d-b722-6205dd4dfec9" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?xsd=xsd1" />
+    <MetadataFile FileName="LoginService.wsdl" MetadataType="Wsdl" ID="8739d0f5-60b0-4500-a6c6-ff821ded4e80" SourceId="1" SourceUrl="http://localhost/GameService/LoginService.svc?wsdl" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

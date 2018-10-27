@@ -89,7 +89,8 @@
     <Compile Include="Controls\PlayerLobbyControl.Designer.cs">
       <DependentUpon>PlayerLobbyControl.cs</DependentUpon>
     </Compile>
-    <Compile Include="GameServiceCallbackHandler.cs" />
+    <Compile Include="Controls\RemovePlayerEventArgs.cs" />
+    <Compile Include="GameCreationStateChangedEventArgs.cs" />
     <Compile Include="MainUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -151,9 +152,6 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Connected Services\GameService\LoginUI.GameService.CreateGameResponse.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\GameService\LoginUI.GameService.KickFromGameResponse.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\GameService\LoginUI.GameService.StartGameResponse.datasource">

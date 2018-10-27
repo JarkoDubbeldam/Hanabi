@@ -24,14 +24,14 @@
     /// </summary>
     private void InitializeComponent() {
       this.groupBox1 = new System.Windows.Forms.GroupBox();
+      this.RemovePlayerButton = new System.Windows.Forms.Button();
       this.PlayerName = new System.Windows.Forms.Label();
-      this.KickPlayerButton = new System.Windows.Forms.Button();
       this.groupBox1.SuspendLayout();
       this.SuspendLayout();
       // 
       // groupBox1
       // 
-      this.groupBox1.Controls.Add(this.KickPlayerButton);
+      this.groupBox1.Controls.Add(this.RemovePlayerButton);
       this.groupBox1.Controls.Add(this.PlayerName);
       this.groupBox1.Location = new System.Drawing.Point(4, 4);
       this.groupBox1.Name = "groupBox1";
@@ -40,6 +40,16 @@
       this.groupBox1.TabStop = false;
       this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
       // 
+      // RemovePlayerButton
+      // 
+      this.RemovePlayerButton.Location = new System.Drawing.Point(150, 15);
+      this.RemovePlayerButton.Name = "RemovePlayerButton";
+      this.RemovePlayerButton.Size = new System.Drawing.Size(60, 23);
+      this.RemovePlayerButton.TabIndex = 1;
+      this.RemovePlayerButton.Text = "Kick";
+      this.RemovePlayerButton.UseVisualStyleBackColor = true;
+      this.RemovePlayerButton.Click += new System.EventHandler(this.RemovePlayerButtonOnClick);
+      // 
       // PlayerName
       // 
       this.PlayerName.AutoSize = true;
@@ -47,16 +57,6 @@
       this.PlayerName.Name = "PlayerName";
       this.PlayerName.Size = new System.Drawing.Size(0, 13);
       this.PlayerName.TabIndex = 0;
-      // 
-      // KickPlayerButton
-      // 
-      this.KickPlayerButton.Location = new System.Drawing.Point(173, 15);
-      this.KickPlayerButton.Name = "KickPlayerButton";
-      this.KickPlayerButton.Size = new System.Drawing.Size(37, 23);
-      this.KickPlayerButton.TabIndex = 1;
-      this.KickPlayerButton.Text = "Kick";
-      this.KickPlayerButton.UseVisualStyleBackColor = true;
-      this.KickPlayerButton.Click += new System.EventHandler(this.KickPlayerButton_Click);
       // 
       // PlayerLobbyControl
       // 
@@ -75,6 +75,6 @@
 
     private System.Windows.Forms.GroupBox groupBox1;
     private System.Windows.Forms.Label PlayerName;
-    private System.Windows.Forms.Button KickPlayerButton;
+    private System.Windows.Forms.Button RemovePlayerButton;
   }
 }

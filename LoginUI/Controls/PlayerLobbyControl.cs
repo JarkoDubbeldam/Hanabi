@@ -10,9 +10,11 @@ using System.Windows.Forms;
 
 namespace LoginUI.Controls {
   public partial class PlayerLobbyControl : UserControl {
-    public PlayerLobbyControl(string username, bool owner) : base() {
+    public PlayerLobbyControl(string username, bool isOwner, bool isSelf)  {
+      InitializeComponent();
       PlayerName.Text = username;
-      KickPlayerButton.Visible = owner;
+      RemovePlayerButton.Visible = isOwner ^ isSelf;
+      RemovePlayerButton.Text = isSelf ? "Leave" : "Kick";
     }
 
     public string Username => PlayerName.Text;
@@ -25,10 +27,10 @@ namespace LoginUI.Controls {
 
     }
 
-    public event EventHandler KickPlayerAction;
+    public event EventHandler RemovePlayerAction;
 
-    private void KickPlayerButton_Click(object sender, EventArgs e) {
-      KickPlayerAction?.Invoke(this, null);
+    private void RemovePlayerButtonOnClick(object sender, EventArgs e) {
+      RemovePlayerAction?.Invoke(this, null);
     }
   }
 }

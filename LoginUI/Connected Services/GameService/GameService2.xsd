@@ -23,39 +23,37 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="KickFromGame">
+  <xs:element name="RemoveFromGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="request" nillable="true" type="q4:KickFromGameRequest" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="KickFromGameResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="KickFromGameResult" nillable="true" type="q5:KickFromGameResponse" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/GameService.Contract" minOccurs="0" name="request" nillable="true" type="q4:RemoveFromGameRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StartGame">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="request" nillable="true" type="q6:StartGameRequest" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="request" nillable="true" type="q5:StartGameRequest" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="StartGameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="StartGameResult" nillable="true" type="q7:StartGameResponse" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/GameService" minOccurs="0" name="StartGameResult" nillable="true" type="q6:StartGameResponse" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="PushGameCreationState">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/GameService.Contract" minOccurs="0" name="gameCreationState" nillable="true" type="q8:GameCreationState" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/GameService.Contract" minOccurs="0" name="gameCreationState" nillable="true" type="q7:GameCreationState" />
       </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="OnRemovedFromGame">
+    <xs:complexType>
+      <xs:sequence />
     </xs:complexType>
   </xs:element>
 </xs:schema>

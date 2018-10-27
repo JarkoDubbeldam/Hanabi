@@ -23,19 +23,19 @@
     /// the contents of this method with the code editor.
     /// </summary>
     private void InitializeComponent() {
-      this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
+      this.PlayersPanel = new System.Windows.Forms.FlowLayoutPanel();
       this.StartGameButton = new System.Windows.Forms.Button();
       this.GameInformationLabel = new System.Windows.Forms.Label();
       this.SuspendLayout();
       // 
       // flowLayoutPanel1
       // 
-      this.flowLayoutPanel1.AutoSize = true;
-      this.flowLayoutPanel1.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-      this.flowLayoutPanel1.Location = new System.Drawing.Point(20, 86);
-      this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-      this.flowLayoutPanel1.Size = new System.Drawing.Size(237, 172);
-      this.flowLayoutPanel1.TabIndex = 0;
+      this.PlayersPanel.AutoSize = true;
+      this.PlayersPanel.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
+      this.PlayersPanel.Location = new System.Drawing.Point(20, 86);
+      this.PlayersPanel.Name = "flowLayoutPanel1";
+      this.PlayersPanel.Size = new System.Drawing.Size(237, 172);
+      this.PlayersPanel.TabIndex = 0;
       // 
       // StartGameButton
       // 
@@ -62,7 +62,7 @@
       this.AutoSize = true;
       this.Controls.Add(this.GameInformationLabel);
       this.Controls.Add(this.StartGameButton);
-      this.Controls.Add(this.flowLayoutPanel1);
+      this.Controls.Add(this.PlayersPanel);
       this.Name = "GameLobbyControl";
       this.Size = new System.Drawing.Size(280, 271);
       this.ResumeLayout(false);
@@ -72,7 +72,7 @@
 
     #endregion
 
-    private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
+    private System.Windows.Forms.FlowLayoutPanel PlayersPanel;
     private System.Windows.Forms.Button StartGameButton;
     private System.Windows.Forms.Label GameInformationLabel;
   }

@@ -2,13 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using System.Runtime.Serialization;
 using GameService;
 
 namespace GameService.Model {
+  [DataContract]
   public class Player {
+    [DataMember]
     public string Username { get; set; }
+    [IgnoreDataMember]
     public Guid PlayerID { get; set; }
+    [IgnoreDataMember]
     internal IGameServiceCallback callbackChannel = null;
   }
 

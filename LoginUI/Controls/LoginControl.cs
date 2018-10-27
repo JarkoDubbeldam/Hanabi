@@ -15,13 +15,14 @@ namespace LoginUI {
     public LoginControl() {
       InitializeComponent();
       Application.ApplicationExit += OnExit;
-      ToggleVisiblity(false, null);
+      ToggleVisiblity(false, null, "");
     }
 
 
     public class LoggedInStateChangedEventArgs : EventArgs {
       public bool LoggedIn { get; set; }
       public Guid? UserID { get; set; }
+      public string Username { get; set; }
     }
 
     public event EventHandler<LoggedInStateChangedEventArgs> LoggedInStateChanged;
@@ -35,7 +36,7 @@ namespace LoginUI {
 
       var result = await AuthenticatorService.Service.AuthenticateUserAsync(request);
       if (result.UserID != null) {
-        ToggleVisiblity(true, result.UserID);
+        ToggleVisiblity(true, result.UserID, username);
         Usernamelabel.Text = $"Logged in as {username}.";
       } else {
         MessageBox.Show($"Failure: {result.FailureReason}");
@@ -51,12 +52,12 @@ namespace LoginUI {
       await LogOut();
     }
 
-    private async Task LogOut() {
+    public async Task LogOut() {
       await AuthenticatorService.Service.LogOffAsync();
     }
 
-    private void ToggleVisiblity(bool loggedIn, Guid? userID) {
-      var args = new LoggedInStateChangedEventArgs { LoggedIn = loggedIn, UserID = userID };
+    private void ToggleVisiblity(bool loggedIn, Guid? userID, string username) {
+      var args = new LoggedInStateChangedEventArgs { LoggedIn = loggedIn, UserID = userID, Username = username };
       LoggedInStateChanged?.Invoke(this, args);
 
       Usernamelabel.Visible = loggedIn;
@@ -70,7 +71,7 @@ namespace LoginUI {
     }
 
     private async void LogoutButton_Click(object sender, EventArgs e) {
-      ToggleVisiblity(false, null);
+      ToggleVisiblity(false, null, "");
       await LogOut();
     }
   }

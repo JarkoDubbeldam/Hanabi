@@ -198,12 +198,21 @@ namespace LoginUI.GameService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="KickFromGameRequest", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RemoveFromGameRequest", Namespace="http://schemas.datacontract.org/2004/07/GameService.Contract")]
     [System.SerializableAttribute()]
-    public partial class KickFromGameRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class RemoveFromGameRequest : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid ActingPlayerIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Guid GameIDField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RemovedPlayerNameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -215,32 +224,42 @@ namespace LoginUI.GameService {
             }
         }
         
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="KickFromGameResponse", Namespace="http://schemas.datacontract.org/2004/07/GameService")]
-    [System.SerializableAttribute()]
-    public partial class KickFromGameResponse : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid ActingPlayerID {
             get {
-                return this.extensionDataField;
+                return this.ActingPlayerIDField;
             }
             set {
-                this.extensionDataField = value;
+                if ((this.ActingPlayerIDField.Equals(value) != true)) {
+                    this.ActingPlayerIDField = value;
+                    this.RaisePropertyChanged("ActingPlayerID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Guid GameID {
+            get {
+                return this.GameIDField;
+            }
+            set {
+                if ((this.GameIDField.Equals(value) != true)) {
+                    this.GameIDField = value;
+                    this.RaisePropertyChanged("GameID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RemovedPlayerName {
+            get {
+                return this.RemovedPlayerNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RemovedPlayerNameField, value) != true)) {
+                    this.RemovedPlayerNameField = value;
+                    this.RaisePropertyChanged("RemovedPlayerName");
+                }
             }
         }
         
@@ -325,6 +344,12 @@ namespace LoginUI.GameService {
         private System.Guid GameIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string GameNameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int JoinCodeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private LoginUI.GameService.Player OwnerField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -349,6 +374,32 @@ namespace LoginUI.GameService {
                 if ((this.GameIDField.Equals(value) != true)) {
                     this.GameIDField = value;
                     this.RaisePropertyChanged("GameID");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string GameName {
+            get {
+                return this.GameNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.GameNameField, value) != true)) {
+                    this.GameNameField = value;
+                    this.RaisePropertyChanged("GameName");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int JoinCode {
+            get {
+                return this.JoinCodeField;
+            }
+            set {
+                if ((this.JoinCodeField.Equals(value) != true)) {
+                    this.JoinCodeField = value;
+                    this.RaisePropertyChanged("JoinCode");
                 }
             }
         }
@@ -393,13 +444,11 @@ namespace LoginUI.GameService {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Player", Namespace="http://schemas.datacontract.org/2004/07/GameService.Model")]
     [System.SerializableAttribute()]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(LoginUI.GameService.User))]
     public partial class Player : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Guid PlayerIDField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string UsernameField;
@@ -411,19 +460,6 @@ namespace LoginUI.GameService {
             }
             set {
                 this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Guid PlayerID {
-            get {
-                return this.PlayerIDField;
-            }
-            set {
-                if ((this.PlayerIDField.Equals(value) != true)) {
-                    this.PlayerIDField = value;
-                    this.RaisePropertyChanged("PlayerID");
-                }
             }
         }
         
@@ -450,49 +486,59 @@ namespace LoginUI.GameService {
         }
     }
     
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="User", Namespace="http://schemas.datacontract.org/2004/07/GameService.Model")]
+    [System.SerializableAttribute()]
+    public partial class User : LoginUI.GameService.Player {
+    }
+    
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameService.IGameService", CallbackContract=typeof(LoginUI.GameService.IGameServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
-    public interface IGameService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="GameService.GameService", CallbackContract=typeof(LoginUI.GameService.GameServiceCallback), SessionMode=System.ServiceModel.SessionMode.Required)]
+    public interface GameService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CreateGame", ReplyAction="http://tempuri.org/IGameService/CreateGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GameService/CreateGame", ReplyAction="http://tempuri.org/GameService/CreateGameResponse")]
         LoginUI.GameService.CreateGameResponse CreateGame(LoginUI.GameService.CreateGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/CreateGame", ReplyAction="http://tempuri.org/IGameService/CreateGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GameService/CreateGame", ReplyAction="http://tempuri.org/GameService/CreateGameResponse")]
         System.Threading.Tasks.Task<LoginUI.GameService.CreateGameResponse> CreateGameAsync(LoginUI.GameService.CreateGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/JoinGame")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/GameService/JoinGame")]
         void JoinGame(LoginUI.GameService.JoinGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/JoinGame")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/GameService/JoinGame")]
         System.Threading.Tasks.Task JoinGameAsync(LoginUI.GameService.JoinGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/KickFromGame", ReplyAction="http://tempuri.org/IGameService/KickFromGameResponse")]
-        LoginUI.GameService.KickFromGameResponse KickFromGame(LoginUI.GameService.KickFromGameRequest request);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/GameService/RemoveFromGame")]
+        void RemoveFromGame(LoginUI.GameService.RemoveFromGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/KickFromGame", ReplyAction="http://tempuri.org/IGameService/KickFromGameResponse")]
-        System.Threading.Tasks.Task<LoginUI.GameService.KickFromGameResponse> KickFromGameAsync(LoginUI.GameService.KickFromGameRequest request);
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/GameService/RemoveFromGame")]
+        System.Threading.Tasks.Task RemoveFromGameAsync(LoginUI.GameService.RemoveFromGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGame", ReplyAction="http://tempuri.org/IGameService/StartGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GameService/StartGame", ReplyAction="http://tempuri.org/GameService/StartGameResponse")]
         LoginUI.GameService.StartGameResponse StartGame(LoginUI.GameService.StartGameRequest request);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGameService/StartGame", ReplyAction="http://tempuri.org/IGameService/StartGameResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/GameService/StartGame", ReplyAction="http://tempuri.org/GameService/StartGameResponse")]
         System.Threading.Tasks.Task<LoginUI.GameService.StartGameResponse> StartGameAsync(LoginUI.GameService.StartGameRequest request);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGameServiceCallback {
+    public interface GameServiceCallback {
         
-        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IGameService/PushGameCreationState")]
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/GameService/PushGameCreationState")]
         void PushGameCreationState(LoginUI.GameService.GameCreationState gameCreationState);
+        
+        [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/GameService/OnRemovedFromGame")]
+        void OnRemovedFromGame();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IGameServiceChannel : LoginUI.GameService.IGameService, System.ServiceModel.IClientChannel {
+    public interface GameServiceChannel : LoginUI.GameService.GameService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class GameServiceClient : System.ServiceModel.DuplexClientBase<LoginUI.GameService.IGameService>, LoginUI.GameService.IGameService {
+    public partial class GameServiceClient : System.ServiceModel.DuplexClientBase<LoginUI.GameService.GameService>, LoginUI.GameService.GameService {
         
         public GameServiceClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {
@@ -530,12 +576,12 @@ namespace LoginUI.GameService {
             return base.Channel.JoinGameAsync(request);
         }
         
-        public LoginUI.GameService.KickFromGameResponse KickFromGame(LoginUI.GameService.KickFromGameRequest request) {
-            return base.Channel.KickFromGame(request);
+        public void RemoveFromGame(LoginUI.GameService.RemoveFromGameRequest request) {
+            base.Channel.RemoveFromGame(request);
         }
         
-        public System.Threading.Tasks.Task<LoginUI.GameService.KickFromGameResponse> KickFromGameAsync(LoginUI.GameService.KickFromGameRequest request) {
-            return base.Channel.KickFromGameAsync(request);
+        public System.Threading.Tasks.Task RemoveFromGameAsync(LoginUI.GameService.RemoveFromGameRequest request) {
+            return base.Channel.RemoveFromGameAsync(request);
         }
         
         public LoginUI.GameService.StartGameResponse StartGame(LoginUI.GameService.StartGameRequest request) {
